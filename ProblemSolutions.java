@@ -1,7 +1,7 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
- *
+ *   Jose Godinez-Contreras / 002
+ *  
  *   This java file contains the problem solutions of isSubSet, findKthLargest,
  *   and sort2Arrays methods. You should utilize the Java Collection Framework for
  *   these methods.
@@ -33,8 +33,16 @@ class ProblemSolutions {
     public boolean isSubset(int list1[], int list2[]) {
 
         // ADD YOU CODE HERE -- DON'T FORGET TO ADD YOR NAME AT TOP OF FILE
-
-        return false;
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : list1) {
+            set.add(num);
+    }
+    for (int num : list2) {
+        if (!set.contains(num)) {
+            return false;
+        }
+    }
+        return true;
     }
 
 
@@ -54,8 +62,16 @@ class ProblemSolutions {
     public int findKthLargest(int[] array, int k) {
 
         // ADD YOUR CODE HERE
+          PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        return 0;
+    for (int num : array) {
+        minHeap.add(num);
+        if (minHeap.size() > k) {
+            minHeap.poll(); // remove the smallest of the top k
+        }
+    }
+
+        return minHeap.peek();
     }
 
 
@@ -74,9 +90,25 @@ class ProblemSolutions {
 
     public int[] sort2Arrays(int[] array1, int[] array2) {
 
-        // ADD YOU CODE HERE
+       int[] a = Arrays.copyOf(array1, array1.length);
+        int[] b = Arrays.copyOf(array2, array2.length);
+        Arrays.sort(a);
+        Arrays.sort(b);
 
-        return null;
+        int n = a.length;
+        int m = b.length;
+        int[] merged = new int[n + m];
+        int i = 0, j = 0, k = 0;
+
+        while (i < n && j < m) {
+            if (a[i] <= b[j]) merged[k++] = a[i++];
+            else merged[k++] = b[j++];
+        }
+
+        while (i < n) merged[k++] = a[i++];
+        while (j < m) merged[k++] = b[j++]; 
+
+    return merged;
     }
 
 }
