@@ -62,10 +62,10 @@ class ProblemSolutions {
     public int findKthLargest(int[] array, int k) {
 
         // ADD YOUR CODE HERE
-          PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-    for (int num : array) {
-        minHeap.add(num);
+        for (int num : array) {
+            minHeap.add(num);
         if (minHeap.size() > k) {
             minHeap.poll(); // remove the smallest of the top k
         }
