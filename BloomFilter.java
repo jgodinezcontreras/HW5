@@ -1,6 +1,6 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Jose Godinez-Contreras / 002
  *
  *   Note, additional comments provided throughout source code is
  *   for educational purposes.
@@ -9,10 +9,6 @@
 
 import java.util.BitSet;
 import java.util.Random;
-import java.util.HashSet;
-import java.util.Set;
-import java.security.SecureRandom;
-import java.lang.Math;
 
 
 /**
@@ -223,6 +219,17 @@ class BloomFilter {
         // of type BitSet (Java class BitSet). See Oracle documentation for
         // this class on available methods. You can also see how method 'add'
         // in this class uses the object.
+     boolean found = true;
+
+     for (int n = 0; n < noHashes; n++) {
+        long hc = hashCode(s, n);
+        int bitNo = (int) (hc) & this.hashMask;
+        if (!data.get(bitNo)) {
+            found = false; }
+     }
+     if (found) {
+        return true;
+     }
 
         return false;
     }
